@@ -29,8 +29,8 @@ const config = {
         docs: {
           routeBasePath: 'docs',
           sidebarPath: require.resolve('./sidebars.js'),
-          // “编辑此页”链接：替换为你的 Git 仓库地址后，每页右下角出现编辑入口
-          editUrl: 'https://github.com/your-org/kvcache-storage-bench/edit/main/bench-site/',
+          // “编辑此页”链接：点开在 GitHub 网页编辑，提交后自动重建
+          editUrl: 'https://github.com/Mmxfq/kvcache-bench/edit/main/',
         },
         blog: false,
         theme: {
