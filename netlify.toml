@@ -1,0 +1,13 @@
+# Netlify 部署配置
+# 推荐：将 bench-site 目录本身作为 Git 仓库根（最简）。
+# 若把 bench-site 作为某仓库的子目录，则改为 base="bench-site"、publish="bench-site/build"。
+
+[build]
+  command = "npm run build"
+  publish = "build"
+
+[build.environment]
+  NODE_VERSION = "18.19.0"
+  NPM_FLAGS = "--no-audit --no-fund"
+
+# Decap CMS 在线编辑所需的 Identity/Git Gateway 由 Netlify 控制台开启（见 README）。

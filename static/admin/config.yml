@@ -1,0 +1,68 @@
+# Decap CMS 配置（在线编辑文档）
+# 前提（在 Netlify 控制台一次性开启）：
+#   1) Site settings → Identity → Enable Identity；邀请你的邮箱为用户。
+#   2) Identity → Services → Git Gateway → Enable。
+# 本地预览编辑：在 bench-site 下执行 `npx decap-server`，并把下方 local_backend 置 true。
+#
+# 路径假设：bench-site 即 Git 仓库根。若 bench-site 为子目录，请在每个 file/folder 前加 "bench-site/"。
+
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: true
+
+media_folder: static/img/uploads
+public_folder: /img/uploads
+
+locale: zh_Hans
+
+collections:
+  # 规范一：KV Cache 存储回读 —— 概述 + 标准化规范（固定文件）
+  - name: kv-cache-core
+    label: KV Cache 规范（概述/规范正文）
+    files:
+      - name: overview
+        label: 概述
+        file: docs/standards/kv-cache-storage/overview.md
+        fields:
+          - { label: 标题, name: title, widget: string }
+          - { label: 侧边栏序号, name: sidebar_position, widget: number, required: false }
+          - { label: 路径, name: slug, widget: string, required: false }
+          - { label: 正文, name: body, widget: markdown }
+      - name: spec
+        label: 标准化规范
+        file: docs/standards/kv-cache-storage/spec.md
+        fields:
+          - { label: 标题, name: title, widget: string }
+          - { label: 侧边栏序号, name: sidebar_position, widget: number, required: false }
+          - { label: 正文, name: body, widget: markdown }
+
+  # 规范一：各厂商复现代码（可新增）
+  - name: kv-cache-vendors
+    label: KV Cache 各厂商复现代码
+    label_singular: 厂商页
+    folder: docs/standards/kv-cache-storage/vendors
+    extension: md
+    format: frontmatter
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: 标题, name: title, widget: string }
+      - { label: 侧边栏序号, name: sidebar_position, widget: number, required: false }
+      - { label: 正文, name: body, widget: markdown }
+
+  # 规范二：多机多卡并发（规划中）
+  - name: multi-node
+    label: 多机多卡并发规范
+    label_singular: 页面
+    folder: docs/standards/multi-node-concurrency
+    extension: md
+    format: frontmatter
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: 标题, name: title, widget: string }
+      - { label: 侧边栏序号, name: sidebar_position, widget: number, required: false }
+      - { label: 路径, name: slug, widget: string, required: false }
+      - { label: 正文, name: body, widget: markdown }
