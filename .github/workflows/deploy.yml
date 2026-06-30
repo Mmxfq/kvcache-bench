@@ -28,7 +28,7 @@ jobs:
         run: npm run build
 
       - name: Deploy to Netlify (production)
-        run: npx netlify-cli@26 deploy --prod --dir=build --site "$NETLIFY_SITE_ID" --auth "$NETLIFY_AUTH_TOKEN"
+        run: npx netlify-cli@26 deploy --prod --dir=build
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
