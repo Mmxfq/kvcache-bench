@@ -16,6 +16,12 @@ const config = {
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
+  // Netlify Identity 控件（供 Decap /admin 在线编辑的登录/邀请流程使用）
+  scripts: [
+    { src: 'https://identity.netlify.com/v1/netlify-identity-widget.js', async: true },
+  ],
+  clientModules: [require.resolve('./src/identityRedirect.js')],
+
   i18n: {
     defaultLocale: 'zh-Hans',
     locales: ['zh-Hans'],
